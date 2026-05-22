@@ -307,8 +307,73 @@ Inspecionar volume e rede:
 docker volume inspect oracle-petcare-data
 docker network inspect petcare-network
 ```
+## 9. Testes Pelo Postman
 
-## 9. Como Usar O JWT Nos Testes
+Para a entrega, os testes no Postman devem usar o **IP publico da VM Azure**.
+
+No Postman, crie uma variavel de ambiente:
+
+```text
+base_url = http://IP_PUBLICO_DA_VM:8080
+```
+
+Depois, use as URLs com `{{base_url}}`.
+
+### 9.1 Criar Usuario
+
+```text
+POST {{base_url}}/auth/register
+```
+
+Body > raw > JSON:
+
+```json
+{
+  "name": "Rafael DevOps",
+  "email": "rafael.devops@gmail.com",
+  "password": "senha123"
+}
+```
+
+### 9.2 Fazer Login E Copiar O Token
+
+```text
+POST {{base_url}}/auth/login
+```
+
+Body > raw > JSON:
+
+```json
+{
+  "email": "rafael.devops@gmail.com",
+  "password": "senha123"
+}
+```
+
+Copie o token retornado no login.
+
+Nas proximas rotas, configure:
+
+```text
+Authorization > Type: Bearer Token
+Token: COLE_AQUI_O_TOKEN_RETORNADO_NO_LOGIN
+```
+
+### 9.3 Rotas Para Testar No Postman
+
+| Metodo | URL no Postman | Observacao |
+|---|---|---|
+| POST | `{{base_url}}/auth/register` | Criar usuario |
+| POST | `{{base_url}}/auth/login` | Fazer login e copiar o token JWT |
+| POST | `{{base_url}}/pets` | Criar pet com coleira e primeira leitura |
+| GET | `{{base_url}}/pets/all` | Listar todos os pets |
+| GET | `{{base_url}}/pets/1` | Buscar pet por ID |
+| PUT | `{{base_url}}/pets/1` | Atualizar pet e registrar nova leitura |
+| DELETE | `{{base_url}}/pets/1` | Remover pet |
+
+Importante: no Postman, use sempre o IP publico da VM. 
+
+## 10. Testes Via Curl
 
 Primeiro registre um usuario:
 
@@ -345,7 +410,7 @@ Nas rotas protegidas, use:
 -H "Authorization: Bearer $TOKEN"
 ```
 
-## 10. Teste Rapido CRUD De Pets
+## 11. Teste Rapido CRUD De Pets
 
 ### POST - Criar Pet
 
@@ -478,7 +543,7 @@ Verifica no Oracle:
 printf "SET LINESIZE 300;\nSET PAGESIZE 100;\nCOLUMN NAME FORMAT A20;\nCOLUMN BREED FORMAT A25;\nCOLUMN DEVICE_ID FORMAT A25;\nSELECT id, name, age, weight, breed, device_id, user_id, created_at FROM pets;\nEXIT;\n" | docker exec -i oracle-petcare sqlplus -s petcare/Petcare123@XEPDB1
 ```
 
-## 11. Verificar Persistencia No Banco Oracle
+## 12. Verificar Persistencia No Banco Oracle
 
 Entrar no Oracle:
 
@@ -499,7 +564,7 @@ SELECT * FROM alerts;
 EXIT;
 ```
 
-## 12. Parar Ou Remover O Ambiente
+## 13. Parar Ou Remover O Ambiente
 
 Parar containers sem apagar volume:
 
@@ -513,7 +578,7 @@ Apagar containers e volume do banco:
 docker compose down -v
 ```
 
-## 13. Remover Recursos Da Azure
+## 14. Remover Recursos Da Azure
 
 Ao final, remover a VM e os recursos criados:
 
