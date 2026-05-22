@@ -309,20 +309,12 @@ docker network inspect petcare-network
 ```
 ## 9. Testes Pelo Postman
 
-Para a entrega, os testes no Postman devem usar o **IP publico da VM Azure**.
-
-No Postman, crie uma variavel de ambiente:
-
-```text
-base_url = http://IP_PUBLICO_DA_VM:8080
-```
-
-Depois, use as URLs com `{{base_url}}`.
+Para os testes no Postman devem usar o **IP publico da VM Azure**.
 
 ### 9.1 Criar Usuario
 
 ```text
-POST {{base_url}}/auth/register
+POST {{IP publico}}/auth/register
 ```
 
 Body > raw > JSON:
@@ -338,7 +330,7 @@ Body > raw > JSON:
 ### 9.2 Fazer Login E Copiar O Token
 
 ```text
-POST {{base_url}}/auth/login
+POST {{IP publico}}/auth/login
 ```
 
 Body > raw > JSON:
