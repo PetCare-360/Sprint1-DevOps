@@ -101,7 +101,7 @@ No Azure Cloud Shell, clone o repositorio que contem a pasta `spritDevOps`.
 
 
 ```bash
-git clone https://github.com/SEU_USUARIO/sprintDevOps.git sprintDevOps
+git clone https://github.com/PetCare-360/Sprint1-DevOps.git sprintDevOps
 cd sprintDevOps
 ```
 
@@ -164,7 +164,7 @@ Dentro da VM, clone novamente o repositorio DevOps para obter o `docker-compose.
 
 ```bash
 cd ~
-git clone https://github.com/SEU_USUARIO/sprintDevOps.git sprintDevOps
+git clone https://github.com/PetCare-360/Sprint1-DevOps.git sprintDevOps
 cd ~/sprintDevOps
 ```
 
