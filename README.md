@@ -355,13 +355,13 @@ Token: COLE_AQUI_O_TOKEN_RETORNADO_NO_LOGIN
 
 | Metodo | URL no Postman | Observacao |
 |---|---|---|
-| POST | `{{base_url}}/auth/register` | Criar usuario |
-| POST | `{{base_url}}/auth/login` | Fazer login e copiar o token JWT |
-| POST | `{{base_url}}/pets` | Criar pet com coleira e primeira leitura |
-| GET | `{{base_url}}/pets/all` | Listar todos os pets |
-| GET | `{{base_url}}/pets/1` | Buscar pet por ID |
-| PUT | `{{base_url}}/pets/1` | Atualizar pet e registrar nova leitura |
-| DELETE | `{{base_url}}/pets/1` | Remover pet |
+| POST | `{{IP publico}}/auth/register` | Criar usuario |
+| POST | `{{IP publico}}/auth/login` | Fazer login e copiar o token JWT |
+| POST | `{{IP publico}}/pets` | Criar pet com coleira e primeira leitura |
+| GET | `{{IP publico}}/pets/all` | Listar todos os pets |
+| GET | `{{IP publico}}/pets/1` | Buscar pet por ID |
+| PUT | `{{IP publico}}/pets/1` | Atualizar pet e registrar nova leitura |
+| DELETE | `{{IP publico}}/pets/1` | Remover pet |
 
 Importante: no Postman, use sempre o IP publico da VM. 
 
